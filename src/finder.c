@@ -4,7 +4,7 @@
 int definesocket() {
     int client_socket_fd;
     if ((client_socket_fd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
-        perror("P2: socket");
+        perror("finder: socket");
         exit(EXIT_FAILURE);
     }
     return client_socket_fd;
@@ -15,12 +15,15 @@ void connecting(int client_socket_fd) {
     strcpy(sock_server.sun_path, SOCKPATH);
     sock_server.sun_family = AF_UNIX;
     while ((connect(client_socket_fd, (struct sockaddr *) &sock_server, sizeof(sock_server))) == -1) {
-        perror("P2: connect");
+        perror("finder: connect");
         sleep(1);
     }
 }
 
 int main(int argc, char ** argv){
+    int fd = definesocket();
+
+    connecting(fd);
 
     return 0;
 }
