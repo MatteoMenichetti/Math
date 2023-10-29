@@ -17,7 +17,7 @@ int main(int argc, char ** argv) {
     if(finderPid==0){
         if(execl("./finder", "finder", NULL)==-1) {
             printf("main: errore fork finder %d\n", errno);
-            exit(-1);
+            exit(EXIT_FAILURE);
         }
     }else{
         char * cFinderPid= malloc(sizeof(int));
@@ -25,7 +25,7 @@ int main(int argc, char ** argv) {
         if(execl("./server", "server", cFinderPid, argv[1])==-1) {
             printf("main: errore fork server %d\n", errno);
             kill(finderPid, SIGKILL);
-            exit(-1);
+            exit(EXIT_FAILURE);
         }
     }
     return 0;
