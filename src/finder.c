@@ -21,6 +21,7 @@ void connecting(int client_socket_fd) {
 }
 
 int main(int argc, char ** argv){
+
     int fd = definesocket();
 
     connecting(fd);
