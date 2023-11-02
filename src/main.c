@@ -21,7 +21,7 @@ int main(int argc, char ** argv) {
     }else{
         char * cFinderPid= malloc(sizeof(int));
         sprintf(cFinderPid, "%d", finderPid);
-        if(execl("./server", "server", cFinderPid, argv[1])==-1) {
+        if(execl("./server", "server", cFinderPid, argv[1], NULL)==-1) {
             printf("main: errore fork server %d\n", errno);
             kill(finderPid, SIGKILL);
             exit(EXIT_FAILURE);
