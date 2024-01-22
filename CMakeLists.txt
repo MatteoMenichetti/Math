@@ -3,7 +3,7 @@ project(numbers LANGUAGES C CXX)
 
 set(CMAKE_C_STANDARD  11)
 
-add_executable(AllTest tests/test.cpp tests/main.cpp src/function.c)
+add_executable(AllTest tests/main.cpp src/function.c)
 
 add_executable(main src/main.c)
 add_executable(server src/server.c)
@@ -14,3 +14,7 @@ include_directories(lib/google_test_lib/googletest/include)
 include_directories(lib/google_test_lib/googlemock/include)
 
 target_link_libraries(AllTest gtest gtest_main)
+
+enable_testing()
+
+add_test(AllTest AllTest)
