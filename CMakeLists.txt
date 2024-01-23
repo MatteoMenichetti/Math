@@ -8,6 +8,7 @@ add_executable(AllTest tests/main.cpp src/function.c)
 add_executable(main src/main.c)
 add_executable(server src/server.c)
 add_executable(finder src/finder.c)
+add_executable(log src/log.c)
 
 add_subdirectory(lib/google_test_lib)
 include_directories(lib/google_test_lib/googletest/include)
