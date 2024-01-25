@@ -9,24 +9,25 @@ int main(int argc, char **argv) {
         printf("main: prime limit number must be higher than 2");
         return EXIT_FAILURE;
     }
-    int finderPid = fork();
-    if (finderPid == 0) {
+    int finder_pid = fork();
+    if (finder_pid == 0) {
         if (execl("./finder", "finder", NULL) == -1) {
-            printf("main: error on finder fork %d\n", errno);
+            perror("main: error on finder fork\n");
             exit(EXIT_FAILURE);
         }
     }
-    if (fork() == 0) {
+    int log_pid= fork();
+    if (log_pid == 0) {
         if (execl("./log", "log", NULL) == -1) {
-            printf("main: error on log fork (errno = %d)\n", errno);
+            perror("main: error on log fork\n");
             exit(EXIT_FAILURE);
         }
     }
     char *cFinderPid = (char *) malloc(sizeof(int));
-    sprintf(cFinderPid, "%d", finderPid);
+    sprintf(cFinderPid, "%d", finder_pid);
     if (execl("./server", "server", cFinderPid, argv[1], NULL) == -1) {
-        printf("main: error on server fork (errno = %d)\n", errno);
-        kill(finderPid, SIGKILL);
+        perror("main: error on server fork");
+        kill(finder_pid, SIGKILL);
         exit(EXIT_FAILURE);
     }
 
