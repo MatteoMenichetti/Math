@@ -3,10 +3,12 @@
 int main(int argc, char **argv) {
     if (argc < 2) {
         printf("main: number of elements < 2");
-        return -1;
+        return EXIT_FAILURE;
     }
-    if (*argv[1] < 2)
-        perror("main: prime limit number must be higher than 2");
+    if (*argv[1] < 2) {
+        printf("main: prime limit number must be higher than 2");
+        return EXIT_FAILURE;
+    }
     int finderPid = fork();
     if (finderPid == 0) {
         if (execl("./finder", "finder", NULL) == -1) {
