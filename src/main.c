@@ -9,17 +9,17 @@ int main(int argc, char **argv) {
         printf("main: prime limit number must be higher than 2");
         return EXIT_FAILURE;
     }
+    int log_pid = fork();
+    if (log_pid == 0) {
+        if (execl("./log", "log", NULL) == -1) {
+            perror("main: error on log fork\n");
+            exit(EXIT_FAILURE);
+        }
+    }
     int finder_pid = fork();
     if (finder_pid == 0) {
         if (execl("./finder", "finder", NULL) == -1) {
             perror("main: error on finder fork\n");
-            exit(EXIT_FAILURE);
-        }
-    }
-    int log_pid= fork();
-    if (log_pid == 0) {
-        if (execl("./log", "log", NULL) == -1) {
-            perror("main: error on log fork\n");
             exit(EXIT_FAILURE);
         }
     }
