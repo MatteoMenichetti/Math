@@ -22,7 +22,7 @@ int open_log() {
 }
 
 int main(int argc, char **argv) {
-    int fd = open_log();
+    int fd_log = open_log();
 
     return EXIT_SUCCESS;
 }
