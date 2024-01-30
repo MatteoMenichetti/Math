@@ -18,27 +18,37 @@ void open_log() {
         exit(EXIT_FAILURE);
     }
 
-    write_on_log("log: start\n", sizeof("log: start\n"));
+    write_on_log("log: start\n", sizeof("log: start"));
 }
 
 int open_pipe() {
     unlink(LOGPIPE);
-    mknod(LOGPIPE, S_IFIFO + S_IREAD + S_IWGRP, 0);
+    // S_IREAD = S_IRUSR & S_IWRITE = S_IWUSR;
+    if (mknod(LOGPIPE, S_IFIFO | S_IREAD | S_IWRITE, 0) == -1) {
+        perror("log: mknod");
+    }
+
+    write_on_log("log: mknod\n", sizeof("log: mknod"));
 
     int fd = open(LOGPIPE, O_RDONLY);
     if (fd == -1) {
-        char *msg = (char *) calloc(sizeof("log: open %s failure") + sizeof(LOGPIPE), sizeof(char));
-        int size = sprintf(msg, "log: open %s failure", LOGPIPE);
+        char failure_msg[] = "log: open %s failure\n", *msg = (char *) calloc(sizeof(failure_msg) + sizeof(LOGPIPE),
+                                                                              sizeof(char));
+        int size = sprintf(msg, failure_msg, LOGPIPE);
 
         write_on_log(msg, size);
 
         perror(msg);
     }
+
+    write_on_log("log: pipe open\n", sizeof("log: pipe open"));
+
     return fd;
 }
 
 int main(int argc, char **argv) {
     open_log();
+
     int fd_pipe = open_pipe();
 
     return EXIT_SUCCESS;
