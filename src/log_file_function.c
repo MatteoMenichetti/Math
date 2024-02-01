@@ -18,5 +18,5 @@ void open_log() {
         exit(EXIT_FAILURE);
     }
 
-    write_on_log((char*)"log: start\n", sizeof("log: start"));
+    write_on_log((char *) "log: start\n", sizeof("log: start"));
 }
