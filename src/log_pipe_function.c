@@ -15,8 +15,6 @@ int open_pipe() {
                                                                               sizeof(char));
         int size = sprintf(msg, failure_msg, LOGPIPE);
 
-        write_on_log(msg, size);
-
         perror(msg);
     }
 
