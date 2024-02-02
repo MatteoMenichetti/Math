@@ -11,7 +11,7 @@ add_executable(server src/server.c)
 add_executable(finder src/finder.c)
 add_executable(log src/log.c
         src/log_file_function.c
-        src/log_pipe_function.cpp)
+        src/log_pipe_function.c)
 
 add_subdirectory(lib/google_test_lib)
 include_directories(lib/google_test_lib/googletest/include)
