@@ -1,6 +1,6 @@
 #include "common.h"
 
-#define LOGPATH "../tmp/general.log"
+#define LOGPATH "../log/general.log"
 
 ssize_t write_on_log(char *, int);
 
