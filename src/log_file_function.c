@@ -2,6 +2,13 @@
 
 int fd_log;
 
+
+void sigterm_handler(int sig) {
+    close(fd_log);
+
+    exit(EXIT_SUCCESS);
+}
+
 ssize_t write_on_log(char *msg, int size) {
     ssize_t c_write = 0;
     if ((c_write = write(fd_log, msg, size)) == -1)

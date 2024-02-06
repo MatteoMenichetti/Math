@@ -9,3 +9,5 @@ void open_log();
 int open_pipe();
 
 void read_log_pipe(int);
+
+void sigterm_handler(int);
