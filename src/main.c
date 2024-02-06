@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
 
     waitpid(server_pid, NULL, 0);
 
-    if(kill(log_pid, SIGKILL)==-1){
+    if(kill(log_pid, SIGTERM)==-1){
         perror("main: kill log");
     }
 
