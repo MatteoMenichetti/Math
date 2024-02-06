@@ -4,7 +4,7 @@ project(numbers LANGUAGES C CXX)
 set(CMAKE_C_STANDARD  11)
 
 add_executable(LogTest tests/log_test.cpp
-        src/log_file_function.c)
+        src/log_file_function.c src/log_pipe_function.c)
 
 add_executable(main src/main.c)
 add_executable(server src/server.c)
