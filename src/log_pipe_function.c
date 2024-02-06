@@ -1,5 +1,22 @@
 #include "../lib/log.h"
 
+#define MSGSIZE 100
+
+void read_log_pipe(int fd) {
+    char *msg = (char *) calloc(MSGSIZE, sizeof(char)), *head = msg;
+
+    while (1) {
+        do {
+            if (read(fd, msg++, sizeof(char)) == 0)sleep(1);
+        }
+        while (strcmp(msg, "\n") == 0);
+
+        write_on_log(head, strlen(head) * sizeof(char));
+    }
+
+}
+
+
 int open_pipe() {
     unlink(LOGPIPE);
     // S_IREAD = S_IRUSR & S_IWRITE = S_IWUSR;
