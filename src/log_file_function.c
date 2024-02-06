@@ -11,7 +11,7 @@ ssize_t write_on_log(char *msg, int size) {
 }
 
 void open_log() {
-    fd_log = open(LOGPATH, O_CREAT | O_WRONLY | O_TRUNC, S_IREAD + S_IWUSR + S_IROTH + S_IRGRP);
+    fd_log = open(LOGPATH, O_CREAT | O_WRONLY | O_TRUNC, S_IREAD | S_IWUSR | S_IROTH | S_IRGRP);
 
     if (fd_log == -1) {
         perror("log: open");
