@@ -1,4 +1,4 @@
-#include "../lib/log.h"
+#include "../../lib/log.h"
 
 int fd_log;
 

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "../lib/log.h"
+#include "../../lib/log.h"
 }
 
 TEST(LogTest, openPipe) {

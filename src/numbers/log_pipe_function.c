@@ -1,4 +1,4 @@
-#include "../lib/log.h"
+#include "../../lib/log.h"
 
 #define MSGSIZE 100
 
