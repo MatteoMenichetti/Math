@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "../../lib/log_common.h"
 
 int control(int **matrix, int column, int row) {
